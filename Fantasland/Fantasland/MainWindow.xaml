@@ -6,7 +6,42 @@
         xmlns:local="clr-namespace:Fantasland"
         xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Fantasland"  Height="450" Width="800" WindowState="Maximized">
+    <mahApps:MetroWindow.Resources>
+        <ResourceDictionary Source="Infrastructure/Styles.xaml"/>
+    </mahApps:MetroWindow.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Expander Grid.Column="0" Grid.Row="1" Background="LightSkyBlue" Header="Warehouse" IsExpanded="True" Margin="10">
+            <StackPanel Margin="10,4,0,0">
+                <Button Margin="4" Content="Products" Height="50" FontFamily="Candara" FontSize="20"/>
+                <Button Margin="4" Content="Stock" Height="50" FontFamily="Candara" FontSize="20"/>
+                <Button Margin="4" Content="Request" Height="50" FontFamily="Candara" FontSize="20"/>
+            </StackPanel>
+        </Expander>
+        <Expander Grid.Column="1" Grid.Row="1" Background="LightSteelBlue" Header="Shop" IsExpanded="True" Margin="10">
+            <StackPanel Margin="10,4,0,0">
+                <Button Margin="4" Content="New Invoice" Height="50" FontFamily="Candara" FontSize="20"/>
+                <Button Margin="4" Content="All Invoices" Height="50" FontFamily="Candara" FontSize="20"/>
+                <Button Margin="4" Content="Search Invoice" Height="50" FontFamily="Candara" FontSize="20"/>
+            </StackPanel>
+        </Expander>
+        <Expander Grid.Column="2" Grid.Row="1" Background="LightSeaGreen" Header="Test" IsExpanded="True" Margin="10">
+            <StackPanel Margin="10,4,0,0">
+                <CheckBox Margin="4" Content="Option 1" />
+                <CheckBox Margin="4" Content="Option 2" />
+                <Button Margin="4" Content="Option 3" Height="50" />
+            </StackPanel>
+        </Expander>
     </Grid>
 </mahApps:MetroWindow>
