@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasland", "Fantasland\Fantasland.csproj", "{A1D749F0-6A6D-46C9-B4EA-20461ED39F12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{2B8CB77D-A640-427E-8AD3-03F739252A57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A1D749F0-6A6D-46C9-B4EA-20461ED39F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1D749F0-6A6D-46C9-B4EA-20461ED39F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1D749F0-6A6D-46C9-B4EA-20461ED39F12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8CB77D-A640-427E-8AD3-03F739252A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8CB77D-A640-427E-8AD3-03F739252A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8CB77D-A640-427E-8AD3-03F739252A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8CB77D-A640-427E-8AD3-03F739252A57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
