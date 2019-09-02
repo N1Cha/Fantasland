@@ -1,4 +1,4 @@
-﻿namespace Fantasland.MainMenu
+﻿namespace Fantasland
 {
     public class MainScreenViewModel
     {

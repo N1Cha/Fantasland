@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Fantasland"  Height="800" Width="1500" >
     <mahApps:MetroWindow.Resources>
-        <ResourceDictionary Source="Infrastructure/Styles/Styles.xaml"/>
+        <ResourceDictionary Source="Infrastructure/Styles.xaml"/>
     </mahApps:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>

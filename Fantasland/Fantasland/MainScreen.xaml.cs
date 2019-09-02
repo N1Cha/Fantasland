@@ -1,4 +1,5 @@
-﻿using Fantasland.MainMenu;
+﻿using Autofac;
+using Fantasland.Infrastructure;
 
 namespace Fantasland
 {
@@ -9,7 +10,7 @@ namespace Fantasland
         public MainScreen()
         {
             InitializeComponent();
-            this.DataContext = new MainScreenViewModel();
+            this.DataContext = Bootstraper.Container.Resolve<MainScreenViewModel>();
         }
     }
 }
