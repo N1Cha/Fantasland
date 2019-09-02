@@ -25,7 +25,7 @@
         <Expander Grid.Column="0" Grid.Row="0" Background="LightSkyBlue" Header="Warehouse" IsExpanded="True" Margin="10">
             <StackPanel Margin="10,5,0,0">
                 <Button Margin="5" Content="Products" Height="50" FontFamily="Candara" FontSize="20"/>
-                <Button Margin="5" Content="Stock" Height="50" FontFamily="Candara" FontSize="20"/>
+                <Button Margin="5" Content="Full Stock" Height="50" FontFamily="Candara" FontSize="20" Click="Button_Click"/>
                 <Button Margin="5" Content="Request" Height="50" FontFamily="Candara" FontSize="20"/>
             </StackPanel>
         </Expander>

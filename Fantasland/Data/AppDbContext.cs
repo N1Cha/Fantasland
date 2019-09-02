@@ -5,11 +5,11 @@ namespace Data
 {
     public class AppDbContext : DbContext
     {
-        AppDbContext(string connectionString) : base(connectionString)
+        public AppDbContext(string connectionString) : base(connectionString)
         {
             Database.SetInitializer<AppDbContext>(null);
         }
 
-        DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
