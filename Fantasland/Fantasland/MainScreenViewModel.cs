@@ -2,6 +2,9 @@
 {
     public class MainScreenViewModel
     {
+        public MainScreenViewModel()
+        {
 
+        }
     }
 }

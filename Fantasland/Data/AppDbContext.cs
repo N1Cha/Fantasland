@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using Data.Models;
+using System.Data.Entity;
 
 namespace Data
 {
@@ -6,7 +7,9 @@ namespace Data
     {
         AppDbContext(string connectionString) : base(connectionString)
         {
-
+            Database.SetInitializer<AppDbContext>(null);
         }
+
+        DbSet<Product> Products { get; set; }
     }
 }
