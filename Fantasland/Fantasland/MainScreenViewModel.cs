@@ -1,4 +1,5 @@
 ﻿using Fantasland.Infrastructure;
+using Fantasland.WarehouseModule;
 using System.Windows.Input;
 
 namespace Fantasland
@@ -29,7 +30,8 @@ namespace Fantasland
 
         private void OnStockCommand(object data)
         {
-
+            FullStockView form = new FullStockView();
+            form.ShowDialog();
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿<mahapps:MetroWindow x:Class="Fantasland.WarehouseModule.FullStockView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fantasland.WarehouseModule"
+        xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="Full Stock" Height="450" Width="800">
+    <Grid>
+        <DataGrid ItemsSource="{Binding AllProducts, Mode=TwoWay}" AutoGenerateColumns="False" FontSize="20" BorderBrush="Black" 
+                  BorderThickness="2" CanUserAddRows="False" AlternatingRowBackground="LightGoldenrodYellow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Code" IsReadOnly="True" Binding="{Binding Code, Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name, Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Price" IsReadOnly="True" Binding="{Binding Price, Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Quantity" IsReadOnly="True" Binding="{Binding Quantity, Mode=TwoWay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</mahapps:MetroWindow>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland"
         xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Fantasland"  Height="800" Width="1500" >
+        Title="Fantasland" Height="800" Width="1500" WindowState="Maximized">
     <mahApps:MetroWindow.Resources>
         <ResourceDictionary Source="Infrastructure/Styles.xaml"/>
     </mahApps:MetroWindow.Resources>
@@ -22,7 +22,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Column="0" Grid.Row="0" Background="LightSkyBlue" Header="Warehouse Management" Margin="10">
+        <GroupBox Grid.Column="0" Grid.Row="0" Background="LightSkyBlue" Header="Warehouse Management" Margin="10" FontSize="20">
             <StackPanel Margin="10,5,0,0">
                 <Button Margin="5" Content="Products" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding ProductCommand}"/>
                 <Button Margin="5" Content="Full Stock" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding StockCommand}"/>

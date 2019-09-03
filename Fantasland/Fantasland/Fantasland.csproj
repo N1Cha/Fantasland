@@ -74,6 +74,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WarehouseModule\FullStockView.xaml.cs">
+      <DependentUpon>FullStockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseModule\FullStockViewModel.cs" />
     <Page Include="Infrastructure\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,6 +98,10 @@
       <DependentUpon>MainScreen.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WarehouseModule\FullStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainScreenViewModel.cs" />
