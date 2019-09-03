@@ -89,6 +89,7 @@
     <Compile Include="Infrastructure\Components\Bootstraper.cs" />
     <Compile Include="Infrastructure\Components\Constants.cs" />
     <Compile Include="Infrastructure\Components\NotifyPropertyChanged.cs" />
+    <Compile Include="Infrastructure\Components\Command.cs" />
     <Compile Include="MainScreen.xaml.cs">
       <DependentUpon>MainScreen.xaml</DependentUpon>
       <SubType>Code</SubType>

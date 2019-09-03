@@ -12,14 +12,5 @@ namespace Fantasland
             InitializeComponent();
             this.DataContext = Bootstraper.Container.Resolve<MainScreenViewModel>();
         }
-
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
-            {
-                context.Products.Load();
-                var t = context.Products.Local;
-            }
-        }
     }
 }
