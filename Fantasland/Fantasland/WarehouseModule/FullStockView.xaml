@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Full Stock" Height="450" Width="800">
+        Title="Full Stock" Height="450" Width="800" IsMinButtonEnabled="False" IsMaxRestoreButtonEnabled="False">
     <Grid>
-        <DataGrid ItemsSource="{Binding AllProducts, Mode=TwoWay}" AutoGenerateColumns="False" FontSize="20" BorderBrush="Black" 
-                  BorderThickness="2" CanUserAddRows="False" AlternatingRowBackground="LightGoldenrodYellow">
+        <DataGrid ItemsSource="{Binding AllProducts, Mode=TwoWay}" AutoGenerateColumns="False" FontSize="20" CanUserAddRows="False"
+                  AlternatingRowBackground="LightGoldenrodYellow">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Code" IsReadOnly="True" Binding="{Binding Code, Mode=TwoWay}"/>
                 <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name, Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Category" IsReadOnly="True" Binding="{Binding Category.Name, Mode=TwoWay}"/>
                 <DataGridTextColumn Header="Price" IsReadOnly="True" Binding="{Binding Price, Mode=TwoWay}"/>
                 <DataGridTextColumn Header="Quantity" IsReadOnly="True" Binding="{Binding Quantity, Mode=TwoWay}"/>
             </DataGrid.Columns>
