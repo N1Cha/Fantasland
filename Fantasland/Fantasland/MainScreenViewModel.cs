@@ -1,4 +1,5 @@
-﻿using Fantasland.Infrastructure;
+﻿using Autofac;
+using Fantasland.Infrastructure;
 using Fantasland.WarehouseModule;
 using System.Windows.Input;
 
@@ -8,6 +9,7 @@ namespace Fantasland
     {
         private ICommand productCommand;
         private ICommand stockCommand;
+        private ICommand categoryCommand;
 
         public MainScreenViewModel()
         {
@@ -23,6 +25,11 @@ namespace Fantasland
             get { return stockCommand = new Command<object>(OnStockCommand); }
         }
 
+        public ICommand CategoryCommand
+        {
+            get { return categoryCommand = new Command<object>(OnCategoryCommand); }
+        }
+
         private void OnProductCommand(object data)
         {
 
@@ -30,8 +37,12 @@ namespace Fantasland
 
         private void OnStockCommand(object data)
         {
-            FullStockView form = new FullStockView();
-            form.ShowDialog();
+            Bootstraper.Container.Resolve<FullStockView>().ShowDialog();
+        }
+
+        private void OnCategoryCommand(object data)
+        {
+            Bootstraper.Container.Resolve<CategoryView>().ShowDialog();
         }
     }
 }
