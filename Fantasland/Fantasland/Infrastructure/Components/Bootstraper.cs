@@ -14,10 +14,12 @@ namespace Fantasland.Infrastructure
             builder.RegisterType<MainScreenViewModel>().AsSelf();
             builder.RegisterType<FullStockViewModel>().AsSelf();
             builder.RegisterType<CategoryViewModel>().AsSelf();
+            builder.RegisterType<NewCategoryViewModel>().AsSelf();
 
 
             builder.RegisterType<FullStockView>().AsSelf();
             builder.RegisterType<CategoryView>().AsSelf();
+            builder.RegisterType<NewCategoryView>().AsSelf();
 
             Container = builder.Build();
         }

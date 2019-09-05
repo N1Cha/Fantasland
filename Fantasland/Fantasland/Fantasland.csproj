@@ -82,6 +82,10 @@
       <DependentUpon>FullStockView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WarehouseModule\FullStockViewModel.cs" />
+    <Compile Include="WarehouseModule\NewCategoryView.xaml.cs">
+      <DependentUpon>NewCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseModule\NewCategoryViewModel.cs" />
     <Page Include="Infrastructure\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WarehouseModule\FullStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WarehouseModule\NewCategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

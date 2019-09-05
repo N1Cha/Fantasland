@@ -6,34 +6,26 @@ using Data;
 using System.Windows.Input;
 using System.Windows;
 using System.Linq;
+using Autofac;
 
 namespace Fantasland.WarehouseModule
 {
     public class CategoryViewModel : NotifyPropertyChanged
     {
         private ObservableCollection<Category> allCategories;
-        private Category newCategory;
+        private Category selectedCategory;
         private ICommand addCategoryCommand;
+        private ICommand deleteCategoryCommand;
 
         public CategoryViewModel()
         {
             this.AllCategories = new ObservableCollection<Category>();
-            this.NewCategory = new Category();
+            this.SelectedCategory = new Category();
 
             using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
             {
                 context.Categories.Load();
                 this.AllCategories = context.Categories.Local;
-            }
-        }
-
-        public Category NewCategory
-        {
-            get { return this.newCategory; }
-            set
-            {
-                this.newCategory = value;
-                this.NotifyChanged(nameof(NewCategory));
             }
         }
 
@@ -47,48 +39,43 @@ namespace Fantasland.WarehouseModule
             }
         }
 
+        public Category SelectedCategory
+        {
+            get { return this.selectedCategory; }
+            set
+            {
+                this.selectedCategory = value;
+                this.NotifyChanged(nameof(SelectedCategory));
+            }
+        }
+
+
         public ICommand AddCategoryCommand
         {
-            get { return this.addCategoryCommand = new Command<object>(OnAddCategoryCommand); }
+            get { return this.addCategoryCommand = new Command<Category>(OnAddCategoryCommand); }
+        }
+
+        public ICommand DeleteCategoryCommand
+        {
+            get { return this.deleteCategoryCommand = new Command<object>(OnDeleteCategoryCommand); }
         }
 
         private void OnAddCategoryCommand(object data)
         {
-            bool isExist = false;
-
-            if(!string.IsNullOrWhiteSpace(this.NewCategory.Name))
-            {
-                isExist = this.IsNewCategoryAlreadyExist(this.NewCategory);
-            }
-
-            if(!isExist)
+            data = this.SelectedCategory;
+            if (Bootstraper.Container.Resolve<NewCategoryView>().ShowDialog() == true)
             {
                 using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
                 {
-                    context.Categories.Add(this.NewCategory);
-                    context.SaveChanges();
-
                     context.Categories.Load();
                     this.AllCategories = new ObservableCollection<Category>(context.Categories.Local.OrderBy(x => x.Id));
                 }
             }
-            else
-            {
-                MessageBox.Show("There is already exist category with same name!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
         }
 
-        private bool IsNewCategoryAlreadyExist(Category newCategory)
+        private void OnDeleteCategoryCommand(object data)
         {
-            foreach (Category c in this.AllCategories)
-            {
-                if (string.Compare(c.Name, this.NewCategory.Name, true) == 0)
-                {
-                    return true;
-                }
-            }
 
-            return false;
         }
     }
 }

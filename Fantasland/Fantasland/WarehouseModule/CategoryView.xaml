@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Categories Manegment" Height="450" Width="800">
+        Title="Categories Manegment" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
+    <Window.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,26 +32,20 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2" Margin="5" Header="Add New Category" IsExpanded="True">
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="Category Name" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-                <TextBox Margin="5" Text="{Binding NewCategory.Name, Mode=TwoWay}" TextAlignment="Right" Width="200" Height="25"/>
-
-                <Label Content="Category Abbreviation" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-                <TextBox Margin="5" Text="{Binding NewCategory.Abbreviation, Mode=TwoWay}" TextAlignment="Left" Width="200" Height="25" />
-
-                <Button Margin="5" Content="Add Category" Command="{Binding AddCategoryCommand}" Width="100" Height="25"/>
-            </StackPanel>
-        </Expander>
-
-        <Expander Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="2" Margin="5"  Header="Existing Categories" IsExpanded="True">
+        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2" Margin="5"  Header="Existing Categories" IsExpanded="True" Height="610">
             <DataGrid ItemsSource="{Binding AllCategories, Mode=TwoWay}" AlternatingRowBackground="LightGoldenrodYellow"
-                      AutoGenerateColumns="False" CanUserAddRows="False">
+                      AutoGenerateColumns="False" CanUserAddRows="False" FontSize="15" VerticalScrollBarVisibility="Auto" 
+                      SelectedItem="{Binding SelectedCategory}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name, Mode=TwoWay}"/>
                     <DataGridTextColumn Header="Abbreviation" IsReadOnly="True" Binding="{Binding Abbreviation, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Expander>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="2" Orientation="Horizontal" Margin="2">
+            <Button Margin="2" Content="Add" Command="{Binding AddCategoryCommand}" Width="50" Height="25" FontSize="10"/>
+            <Button Margin="2" Content="Delete" Command="{Binding DeleteCategoryCommand}" Width="50" Height="25" FontSize="10"/>
+        </StackPanel>
     </Grid>
 </mahapps:MetroWindow>

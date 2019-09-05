@@ -22,15 +22,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Column="0" Grid.Row="0" Background="LightSkyBlue" Header="Warehouse Management" Margin="10" FontSize="20">
+        <GroupBox Grid.Column="0" Grid.Row="0" Background="LightGreen" Header="Warehouse Management" Margin="10" FontSize="20">
             <StackPanel Margin="10,5,0,0">
-                <Button Margin="5" Content="Products" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding ProductCommand}"/>
                 <Button Margin="5" Content="Full Stock" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding StockCommand}"/>
+                <Button Margin="5" Content="Products" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding ProductCommand}"/>
                 <Button Margin="5" Content="Categories" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding CategoryCommand}"/>
             </StackPanel>
         </GroupBox>
         
-        <GroupBox Grid.Column="1" Grid.Row="0" Background="LightSteelBlue" Header="Shop Management" Margin="10">
+        <GroupBox Grid.Column="1" Grid.Row="0" Background="LightCoral" Header="Shop Management" Margin="10">
             <StackPanel Margin="10,5,0,0">
                 <Button Margin="5" Content="New Invoice" Height="50" FontFamily="Candara" FontSize="20"/>
                 <Button Margin="5" Content="All Invoices" Height="50" FontFamily="Candara" FontSize="20"/>
