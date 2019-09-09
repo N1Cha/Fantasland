@@ -10,6 +10,7 @@ namespace Fantasland
         private ICommand productCommand;
         private ICommand stockCommand;
         private ICommand categoryCommand;
+        private ICommand insertStockCommand;
 
         public MainScreenViewModel()
         {
@@ -18,6 +19,11 @@ namespace Fantasland
         public ICommand ProductCommand
         {
             get { return productCommand = new Command<object>(OnProductCommand); }
+        }
+
+        public ICommand InsertStockCommand
+        {
+            get { return insertStockCommand = new Command<object>(OnInsertStockCommand); }
         }
 
         public ICommand StockCommand
@@ -43,6 +49,11 @@ namespace Fantasland
         private void OnCategoryCommand()
         {
             Bootstraper.Container.Resolve<CategoryView>().ShowDialog();
+        }
+
+        private void OnInsertStockCommand()
+        {
+            Bootstraper.Container.Resolve<InsertStockView>().ShowDialog();
         }
     }
 }

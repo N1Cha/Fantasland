@@ -32,7 +32,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2" Margin="5"  Header="Existing Categories" IsExpanded="True" Height="610">
+        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2" Margin="5"  Header="Existing Categories" IsExpanded="True" Height="610" Background="LightGreen">
             <DataGrid ItemsSource="{Binding AllCategories, Mode=TwoWay}" AlternatingRowBackground="LightGoldenrodYellow"
                       AutoGenerateColumns="False" CanUserAddRows="False" FontSize="15" VerticalScrollBarVisibility="Auto" 
                       SelectedItem="{Binding SelectedCategory}">

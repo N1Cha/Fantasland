@@ -1,0 +1,46 @@
+﻿<mahapps:MetroWindow x:Class="Fantasland.WarehouseModule.InsertStockView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fantasland.WarehouseModule"
+        xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="Insert Stock"  Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Stock" IsExpanded="True" Height="610" Background="LightGreen">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding NewStock, Mode=TwoWay}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                      FontSize="15" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Code">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="test"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridComboBoxColumn Header="Name"/>
+                    <mahapps:DataGridNumericUpDownColumn Header="Quantity"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Expander>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="2" Orientation="Horizontal" Margin="2">
+            <Button Margin="2" Content="Add Row" Command="{Binding AddRowCommand}" Width="80" Height="25" FontSize="10"/>
+            <Button Margin="2" Content="Delete Row" Command="{Binding DeleteRowCommand}" Width="80" Height="25" FontSize="10"/>
+        </StackPanel>
+    </Grid>
+</mahapps:MetroWindow>
