@@ -49,7 +49,6 @@ namespace Fantasland.WarehouseModule
             }
         }
 
-
         public ICommand AddCategoryCommand
         {
             get { return this.addCategoryCommand = new Command<Category>(OnAddCategoryCommand); }
@@ -60,9 +59,8 @@ namespace Fantasland.WarehouseModule
             get { return this.deleteCategoryCommand = new Command<object>(OnDeleteCategoryCommand); }
         }
 
-        private void OnAddCategoryCommand(object data)
+        private void OnAddCategoryCommand()
         {
-            data = this.SelectedCategory;
             if (Bootstraper.Container.Resolve<NewCategoryView>().ShowDialog() == true)
             {
                 using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
@@ -73,7 +71,7 @@ namespace Fantasland.WarehouseModule
             }
         }
 
-        private void OnDeleteCategoryCommand(object data)
+        private void OnDeleteCategoryCommand()
         {
 
         }

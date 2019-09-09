@@ -66,7 +66,7 @@ namespace Fantasland.WarehouseModule
             }
         }
 
-        private void OnSaveCategoryCommand(object data)
+        private void OnSaveCategoryCommand()
         {
             bool isExist = false;
 

@@ -5,14 +5,14 @@ namespace Fantasland.Infrastructure
 {
     public class Command<T> : ICommand
     {
-        readonly Action<T> execute = null;
+        readonly Action execute = null;
         readonly Predicate<T> canExecute = null;
 
-        public Command(Action<T> execute) : this(execute, null)
+        public Command(Action execute) : this(execute, null)
         {
         }
 
-        public Command(Action<T> execute, Predicate<T> canExecute)
+        public Command(Action execute, Predicate<T> canExecute)
         {
             this.execute = execute;
             this.canExecute = canExecute;
@@ -31,7 +31,7 @@ namespace Fantasland.Infrastructure
 
         public void Execute(object parameter)
         {
-            execute((T)parameter);
+            execute();
         }
     }
 }
