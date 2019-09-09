@@ -30,17 +30,17 @@ namespace Fantasland
             get { return categoryCommand = new Command<object>(OnCategoryCommand); }
         }
 
-        private void OnProductCommand(object data)
+        private void OnProductCommand()
         {
-
+            Bootstraper.Container.Resolve<NewProductView>().ShowDialog();
         }
 
-        private void OnStockCommand(object data)
+        private void OnStockCommand()
         {
             Bootstraper.Container.Resolve<FullStockView>().ShowDialog();
         }
 
-        private void OnCategoryCommand(object data)
+        private void OnCategoryCommand()
         {
             Bootstraper.Container.Resolve<CategoryView>().ShowDialog();
         }

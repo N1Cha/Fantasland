@@ -4,7 +4,6 @@ using Fantasland.Infrastructure;
 using System.Data.Entity;
 using Data;
 using System.Windows.Input;
-using System.Windows;
 using System.Linq;
 using Autofac;
 

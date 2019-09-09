@@ -23,15 +23,8 @@ namespace Fantasland.WarehouseModule
 
         public ObservableCollection<Product> AllProducts
         {
-            get
-            {
-                return this.allProducts;
-            }
-            set
-            {
-                this.allProducts = value;
-                this.NotifyChanged(nameof(AllProducts));
-            }
+            get { return this.allProducts; }
+            set { this.allProducts = value; }
         }
 
     }

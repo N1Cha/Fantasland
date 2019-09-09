@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Full Stock" Height="450" Width="800" IsMinButtonEnabled="False" IsMaxRestoreButtonEnabled="False">
+        Title="Full Stock" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
     <Grid>
         <DataGrid ItemsSource="{Binding AllProducts, Mode=TwoWay}" AutoGenerateColumns="False" FontSize="20" CanUserAddRows="False"
                   AlternatingRowBackground="LightGoldenrodYellow">

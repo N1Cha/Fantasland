@@ -86,6 +86,10 @@
       <DependentUpon>NewCategoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WarehouseModule\NewCategoryViewModel.cs" />
+    <Compile Include="WarehouseModule\NewProductView.xaml.cs">
+      <DependentUpon>NewProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseModule\NewProductViewModel.cs" />
     <Page Include="Infrastructure\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WarehouseModule\NewCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WarehouseModule\NewProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

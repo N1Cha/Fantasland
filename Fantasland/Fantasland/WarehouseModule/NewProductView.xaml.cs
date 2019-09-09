@@ -3,12 +3,12 @@ using Fantasland.Infrastructure;
 
 namespace Fantasland.WarehouseModule
 {
-    public partial class NewCategoryView
+    public partial class NewProductView
     {
-        public NewCategoryView()
+        public NewProductView()
         {
             InitializeComponent();
-            this.DataContext = Bootstraper.Container.Resolve<NewCategoryViewModel>();
+            this.DataContext = Bootstraper.Container.Resolve<NewProductViewModel>();
         }
     }
 }
