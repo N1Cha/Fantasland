@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Fantasland.Infrastructure;
+using Fantasland.Sales;
 using Fantasland.WarehouseModule;
 using System.Windows.Input;
 
@@ -11,6 +12,7 @@ namespace Fantasland
         private ICommand stockCommand;
         private ICommand categoryCommand;
         private ICommand insertStockCommand;
+        private ICommand newSaleCommand;
 
         public MainScreenViewModel()
         {
@@ -36,6 +38,11 @@ namespace Fantasland
             get { return categoryCommand = new Command<object>(OnCategoryCommand); }
         }
 
+        public ICommand NewSaleCommand
+        {
+            get { return newSaleCommand = new Command<object>(OnNewSaleCommand); }
+        }
+
         private void OnProductCommand()
         {
             Bootstraper.Container.Resolve<NewProductView>().ShowDialog();
@@ -54,6 +61,11 @@ namespace Fantasland
         private void OnInsertStockCommand()
         {
             Bootstraper.Container.Resolve<InsertStockView>().ShowDialog();
+        }
+
+        private void OnNewSaleCommand()
+        {
+            Bootstraper.Container.Resolve<NewSaleView>().ShowDialog();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Fantasland.Sales;
 using Fantasland.WarehouseModule;
 
 namespace Fantasland.Infrastructure
@@ -17,12 +18,14 @@ namespace Fantasland.Infrastructure
             builder.RegisterType<NewCategoryViewModel>().AsSelf();
             builder.RegisterType<NewProductViewModel>().AsSelf();
             builder.RegisterType<InsertStockViewModel>().AsSelf();
+            builder.RegisterType<NewSaleViewModel>().AsSelf();
 
             builder.RegisterType<FullStockView>().AsSelf();
             builder.RegisterType<CategoryView>().AsSelf();
             builder.RegisterType<NewCategoryView>().AsSelf();
             builder.RegisterType<NewProductView>().AsSelf();
             builder.RegisterType<InsertStockView>().AsSelf();
+            builder.RegisterType<NewSaleView>().AsSelf();
 
             Container = builder.Build();
         }

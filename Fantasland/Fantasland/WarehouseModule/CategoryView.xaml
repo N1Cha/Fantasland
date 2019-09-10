@@ -7,21 +7,6 @@
         xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="Categories Manegment" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
-    <Window.Resources>
-        <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="HorizontalContentAlignment" Value="Right"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="12"/>
-        </Style>
-
-        <Style x:Key="TextBoxStyle" TargetType="TextBox">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="TextAlignment" Value="Left"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="25"/>
-        </Style>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
