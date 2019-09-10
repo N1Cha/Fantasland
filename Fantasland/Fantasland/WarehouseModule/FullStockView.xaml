@@ -11,11 +11,11 @@
         <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="Full Stock" IsExpanded="True" Height="610" 
                   Background="LightGreen" VerticalAlignment="Top">
             <DataGrid ItemsSource="{Binding AllProducts, Mode=TwoWay}" AutoGenerateColumns="False" FontSize="20" CanUserAddRows="False"
-                  AlternatingRowBackground="LightGoldenrodYellow">
+                  AlternatingRowBackground="LightGreen" GridLinesVisibility="All">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Code" IsReadOnly="True" Binding="{Binding Code, Mode=TwoWay}"/>
                     <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name, Mode=TwoWay}"/>
-                    <DataGridTextColumn Header="Category" IsReadOnly="True" Binding="{Binding Category.Name, Mode=TwoWay}"/>
+                    <!--<DataGridTextColumn Header="Category" IsReadOnly="True" Binding="{Binding Category, Mode=TwoWay}"/>-->
                     <DataGridTextColumn Header="Price" IsReadOnly="True" Binding="{Binding Price, Mode=TwoWay}"/>
                     <DataGridTextColumn Header="Quantity" IsReadOnly="True" Binding="{Binding Quantity, Mode=TwoWay}"/>
                 </DataGrid.Columns>

@@ -81,7 +81,6 @@ namespace Fantasland.WarehouseModule
                 {
                     context.Categories.Add(this.NewCategory);
                     context.SaveChanges();
-
                 }
             }
             else

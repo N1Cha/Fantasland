@@ -64,7 +64,6 @@ namespace Fantasland.WarehouseModule
         {
             if (this.SelectedCategory != null)
             {
-                this.NewProduct.Category = this.SelectedCategory;
                 this.NewProduct.CategoryId = this.SelectedCategory.Id;
             }
             else
