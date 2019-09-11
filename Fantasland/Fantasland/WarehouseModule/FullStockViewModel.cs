@@ -16,7 +16,7 @@ namespace Fantasland.WarehouseModule
 
             using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
             {
-                context.Products.Load();
+                context.Products.Include(x => x.Category).Load();
                 this.AllProducts = context.Products.Local;
             }
         }
