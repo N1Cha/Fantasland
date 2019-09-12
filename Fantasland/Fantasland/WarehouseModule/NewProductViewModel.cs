@@ -12,7 +12,6 @@ namespace Fantasland.WarehouseModule
     {
         private Product newProduct;
         private Category selectedCategory;
-        private ObservableCollection<Category> categories;
         private ICommand saveProductCommand;
 
         public NewProductViewModel()
@@ -46,15 +45,8 @@ namespace Fantasland.WarehouseModule
             }
         }
 
-        public ObservableCollection<Category> Categories
-        {
-            get { return this.categories; }
-            set
-            {
-                this.categories = value;
-            }
-        }
-
+        public ObservableCollection<Category> Categories { get; set; }
+        
         public ICommand SaveProductCommand
         {
             get { return this.saveProductCommand = new Command<object>(OnSaveProductCommand); }

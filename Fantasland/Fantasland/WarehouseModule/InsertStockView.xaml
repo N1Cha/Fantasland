@@ -24,18 +24,24 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Stock" IsExpanded="True" Height="610" Background="LightGreen">
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding NewStock, Mode=TwoWay}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
-                      FontSize="15" CanUserAddRows="False" GridLinesVisibility="All" AlternatingRowBackground="LightGreen">
-                <DataGrid.Columns>
+        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Stock" IsExpanded="True" Height="580" Background="LightGreen">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=NewStock, Mode=TwoWay}" FontSize="15" CanUserAddRows="False" 
+                      GridLinesVisibility="All" AlternatingRowBackground="LightGreen" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                <DataGrid.Columns>                    
                     <DataGridTemplateColumn Header="Product Name">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding AllProducts, Mode=TwoWay}" DisplayMemberPath="Name"/>
+                                <TextBlock Text="{Binding Path=Name}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}, Path=DataContext.AllProducts}" 
+                                          DisplayMemberPath="Name" SelectedValue="{Binding Path= Name}" SelectedValuePath="Name"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
-                    <mahapps:DataGridNumericUpDownColumn Header="Quantity" Binding="{Binding Path=Quantity}"/>
+                    <mahapps:DataGridNumericUpDownColumn Header="Product Quantity" Binding="{Binding Path=Quantity}" Minimum="1"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Expander>
@@ -43,7 +49,9 @@
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="2" Orientation="Horizontal" Margin="2">
             <Button Margin="2" Content="Add Row" Command="{Binding AddRowCommand}" Width="80" Height="25" FontSize="10"/>
             <Button Margin="2" Content="Delete Row" Command="{Binding DeleteRowCommand}" Width="80" Height="25" FontSize="10"/>
-            <Button Margin="2" Content="Insert Stocks" Command="{Binding InsertStockInWerehouse}" Width="80" Height="25" FontSize="10"/>
         </StackPanel>
+
+        <Button Grid.Column="0" Grid.Row="2" Margin="2" Content="Insert Stocks" HorizontalAlignment="Left"
+                Command="{Binding InsertStockInWerehouse}" Width="164" Height="30" FontSize="12"/>
     </Grid>
 </mahapps:MetroWindow>

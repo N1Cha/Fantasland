@@ -3,6 +3,8 @@ using Data.Models;
 using Fantasland.Infrastructure;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Fantasland.WarehouseModule
@@ -19,11 +21,13 @@ namespace Fantasland.WarehouseModule
         {
             this.NewStock = new ObservableCollection<Product>();
             this.AllProducts = new ObservableCollection<Product>();
-            this.NewStock.Add(new Product());
+            this.SelectedItem = new Product();
+            this.selectedItem.Category = new Category();
+            this.NewStock.Add(this.SelectedItem);
 
             using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
             {
-                context.Products.Load();
+                context.Products.Include(c => c.Category).Load();
                 this.AllProducts = context.Products.Local;
             }
         }
@@ -46,7 +50,7 @@ namespace Fantasland.WarehouseModule
         {
             get { return this.addRowCommand = new Command<object>(OnAddRowCommand); }
         }
-         
+
         public ICommand DeleteRowCommand
         {
             get { return this.deleteRowCommand = new Command<object>(OnDeleteRowCommand); }
@@ -64,7 +68,7 @@ namespace Fantasland.WarehouseModule
 
         private void OnDeleteRowCommand()
         {
-            if(this.NewStock.Count > 1 && this.SelectedItem != null)
+            if (this.NewStock.Count > 1 && this.SelectedItem != null)
             {
                 this.NewStock.Remove(this.SelectedItem);
             }
@@ -72,9 +76,44 @@ namespace Fantasland.WarehouseModule
 
         private void OnInsertStockInWerehouse()
         {
-            if(this.NewStock != null && this.NewStock.Count > 0)
+            if (this.NewStock != null && this.NewStock.Count > 0)
             {
+                if (this.HasAllStocksHaveNames(this.NewStock))
+                {
+                    this.AddNewStock(this.NewStock);
+                    MessageBox.Show("The products are added successfully", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Select product name for every stock", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
 
+        private bool HasAllStocksHaveNames(ObservableCollection<Product> newStocks)
+        {
+            foreach (Product product in newStocks)
+            {
+                if (string.IsNullOrWhiteSpace(product.Name))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void AddNewStock(ObservableCollection<Product> newStocks)
+        {
+            using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
+            {
+                context.Products.Include(c => c.Category).Load();
+                foreach(Product p in newStocks)
+                {
+                    context.Products.Local.FirstOrDefault(x => string.Compare(x.Name, p.Name, true) == 0).Quantity += p.Quantity;
+                }
+
+                context.SaveChanges();
             }
         }
     }
