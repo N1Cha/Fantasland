@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fantasland.Sales"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:ma ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="New Sale" Height="700" Width="1260" ResizeMode="NoResize" SaveWindowPosition="True" >
@@ -51,15 +52,23 @@
                  Text="{Binding NewInvoice.InvoiceNumber, Mode=TwoWay}"/>
 
         <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource LabelStyle}" Content="Date" HorizontalAlignment="Right" Margin="0,3,210,3"/>
-        <ma:DateTimePicker Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Width="200" 
+        <ma:DateTimePicker Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Width="200" IsReadOnly="True"
                            SelectedDate="{Binding NewInvoice.InvoiceDate, Mode=TwoWay}"/>
 
         <Expander Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" IsExpanded="True" Height="500" Margin="3,10" Background="LightCoral" 
                   Header="Products">
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=InvoiceItems, Mode=TwoWay}" FontSize="15" CanUserAddRows="False" 
-                      GridLinesVisibility="All" AlternatingRowBackground="LightCoral" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=InvoiceItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15" CanUserAddRows="False"
+                      GridLinesVisibility="All" AlternatingRowBackground="LightCoral" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="CellEditEnding" >
+                        <i:InvokeCommandAction Command="{Binding PaymentCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="UnloadingRow">
+                        <i:InvokeCommandAction Command="{Binding PaymentCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Product Name">
+                    <DataGridTemplateColumn Header="Product Name" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Product.Name, UpdateSourceTrigger=PropertyChanged}"/>
@@ -67,13 +76,14 @@
                         </DataGridTemplateColumn.CellTemplate>
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}, Path=DataContext.AllProducts}" 
-                                          DisplayMemberPath="Name" SelectedItem="{Binding Path=Product}" SelectedValuePath="{Binding Path=Product.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}, Path=DataContext.AllProducts}"  
+                                          DisplayMemberPath="Name" SelectedItem="{Binding Path=Product}"
+                                          SelectedValuePath="{Binding Path=Product.Name, UpdateSourceTrigger=PropertyChanged}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
-                    <ma:DataGridNumericUpDownColumn Header="Quntity" Binding="{Binding Path=Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0"/>
-                    <ma:DataGridNumericUpDownColumn IsReadOnly="True" Header="Unit Price" Binding="{Binding Path=Product.Price, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ma:DataGridNumericUpDownColumn Header="Quntity" Width="1*" Binding="{Binding Path=Quantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Minimum="0"/>
+                    <ma:DataGridNumericUpDownColumn IsReadOnly="True" Width="1*" Header="Unit Price" Binding="{Binding Path=Product.Price, UpdateSourceTrigger=PropertyChanged}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Expander>

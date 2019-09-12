@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Fantasland.Sales
@@ -21,6 +22,7 @@ namespace Fantasland.Sales
         private ICommand addItemCommand;
         private ICommand deleteItemCommand;
         private ICommand finnishSaleCommand;
+        private ICommand paymentCommand;
 
         public NewSaleViewModel()
         {
@@ -30,7 +32,7 @@ namespace Fantasland.Sales
 
             this.BuyerType = new ObservableCollection<string>() { "Organization", "Customer" };
             this.SelectedBuyerType = "Organization";
-            this.InvoiceItems = new ObservableCollection<InvoiceItems>() { new InvoiceItems() { Product = new Product() } };
+            this.InvoiceItems = new ObservableCollection<InvoiceItems>() { new InvoiceItems() { Product = new Product() }, new InvoiceItems() { Product = new Product() } };
 
             using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
             {
@@ -62,6 +64,11 @@ namespace Fantasland.Sales
         public ICommand FinnishSaleCommand
         {
             get { return this.finnishSaleCommand = new Command<object>(OnFinnishSaleCommand); }
+        }
+
+        public ICommand PaymentCommand
+        {
+            get { return this.paymentCommand = new Command<object>(OnPaymentCommand); }
         }
 
         public bool IsOraganization
@@ -158,6 +165,7 @@ namespace Fantasland.Sales
         private void OnAddItemCommand()
         {
             this.InvoiceItems.Add(new InvoiceItems() { Product = new Product() });
+            this.PaymentAmount = this.CalculatePaymentAmount();
         }
 
         private void OnDeleteItemCommand()
@@ -166,11 +174,66 @@ namespace Fantasland.Sales
             {
                 this.InvoiceItems.Remove(this.SelectedItem);
             }
+            this.PaymentAmount = this.CalculatePaymentAmount();
         }
 
         private void OnFinnishSaleCommand()
         {
+            if (IsInvoiceValid())
+            {
+                this.NewInvoice.IsOrganization = this.IsOraganization;
+                this.NewInvoice.PaymentAmount = this.PaymentAmount;
 
+
+                using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
+                {
+                    context.Invoices.Add(this.NewInvoice);
+                    context.SaveChanges();
+
+                    foreach (InvoiceItems item in this.InvoiceItems)
+                    {
+                        if(item.Product.Id == 0 || item.Quantity == 0)
+                        {
+                            continue;
+                        }
+
+                        item.Invoice = this.NewInvoice;
+                        item.ProductId = item.Product.Id;
+                        item.InvoiceId = this.NewInvoice.Id;
+
+                        context.InvoiceItems.Add(item);
+                    }
+
+                    context.SaveChanges();
+                }
+
+                MessageBox.Show("The invoice is created successfully", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void OnPaymentCommand()
+        {
+            this.PaymentAmount = this.CalculatePaymentAmount();
+        }
+
+        private bool IsInvoiceValid()
+        {
+            if (this.IsOraganization && string.IsNullOrWhiteSpace(this.NewInvoice.OrganizationCode))
+            {
+                MessageBox.Show("Enter Organization name!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            foreach (InvoiceItems item in this.InvoiceItems)
+            {
+                if (string.IsNullOrWhiteSpace(item.Product.Name) && item.Quantity != 0)
+                {
+                    MessageBox.Show("Select Product Name for every row!", "Warning  ", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
