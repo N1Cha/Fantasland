@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Invoices.cs" />
+    <Compile Include="Models\InvoiceItems.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

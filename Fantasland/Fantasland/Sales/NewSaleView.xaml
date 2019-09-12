@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland.Sales"
         xmlns:ma ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="New Sale" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
+        Title="New Sale" Height="700" Width="1260" ResizeMode="NoResize" SaveWindowPosition="True" >
     <Window.Resources>
         <Style x:Key="LabelStyle" TargetType="Label">
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
@@ -29,6 +29,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -38,28 +39,56 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelStyle}" Content="Buyer"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBoxStyle}"/>
+        <ComboBox Grid.Column="1" Grid.Row="0" Margin="3" Height="25" ItemsSource="{Binding BuyerType, Mode=TwoWay}" 
+                  SelectedItem="{Binding SelectedBuyerType, Mode=TwoWay}"/>
 
-        <Label Grid.Column="3" Grid.Row="0" Style="{StaticResource LabelStyle}" Content="Date" HorizontalAlignment="Right" Margin="0,3,210,3"/>
-        <ma:DateTimePicker Grid.Column="3" Grid.Row="0" HorizontalAlignment="Right" Margin="5" Width="200"/>
+        <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelStyle}" Content="Organization Name"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}" IsEnabled="{Binding IsOraganization, Mode=TwoWay}" 
+                 Text="{Binding NewInvoice.OrganizationCode, Mode=TwoWay}"/>
 
-        <Expander Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" IsExpanded="True" Height="530" Margin="3,10" Background="LightCoral" 
+        <Label Grid.Column="3" Grid.Row="0" Style="{StaticResource LabelStyle}" Content="Invoice Number" HorizontalAlignment="Right" Margin="0,3,210,3"/>
+        <TextBox Grid.Column="3" Grid.Row="0" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Right" IsReadOnly="True"
+                 Text="{Binding NewInvoice.InvoiceNumber, Mode=TwoWay}"/>
+
+        <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource LabelStyle}" Content="Date" HorizontalAlignment="Right" Margin="0,3,210,3"/>
+        <ma:DateTimePicker Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Margin="5" Width="200" 
+                           SelectedDate="{Binding NewInvoice.InvoiceDate, Mode=TwoWay}"/>
+
+        <Expander Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" IsExpanded="True" Height="500" Margin="3,10" Background="LightCoral" 
                   Header="Products">
-            <DataGrid>
-
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=InvoiceItems, Mode=TwoWay}" FontSize="15" CanUserAddRows="False" 
+                      GridLinesVisibility="All" AlternatingRowBackground="LightCoral" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Product Name">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Product.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}, Path=DataContext.AllProducts}" 
+                                          DisplayMemberPath="Name" SelectedItem="{Binding Path=Product}" SelectedValuePath="{Binding Path=Product.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <ma:DataGridNumericUpDownColumn Header="Quntity" Binding="{Binding Path=Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0"/>
+                    <ma:DataGridNumericUpDownColumn IsReadOnly="True" Header="Unit Price" Binding="{Binding Path=Product.Price, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataGrid.Columns>
             </DataGrid>
         </Expander>
 
-        <Button Grid.Column="0" Grid.Row="2" Margin="5" Width="100" Height="25" FontSize="10" 
-                Content="Add Item" HorizontalAlignment="Right"/>
-        
-        <Button Grid.Column="1" Grid.Row="2" Margin="5" Width="100" Height="25" FontSize="10" 
-                Content="Delete Item" HorizontalAlignment="Left"/>
+        <Button Grid.Column="0" Grid.Row="3" Margin="5" Width="100" Height="25" FontSize="10" 
+                Content="Add Item" HorizontalAlignment="Right" Command="{Binding AddItemCommand}"/>
 
-        <Label Grid.Column="3" Grid.Row="2" Style="{StaticResource LabelStyle}" Content="Payment Amount" Margin="130,3,210,3"/>
-        <TextBox Grid.Column="3" Grid.Row="2" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Right"/>
+        <Button Grid.Column="1" Grid.Row="3" Margin="5" Width="100" Height="25" FontSize="10" 
+                Content="Delete Item" HorizontalAlignment="Left" Command="{Binding DeleteItemCommand}"/>
 
-        <Button Grid.Column="3" Grid.Row="3" Margin="5" Width="100" Height="25" FontSize="10" 
-                Content="Finish Sale" HorizontalAlignment="Right"/>
+        <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource LabelStyle}" Content="Payment Amount" Margin="130,3,210,3"/>
+        <ma:NumericUpDown Grid.Column="3" Grid.Row="3" Width="200" Height="25" Margin="3" HorizontalAlignment="Right" IsReadOnly="True"
+                 Value="{Binding PaymentAmount, Mode=TwoWay}" HideUpDownButtons="True"/>
+
+        <Button Grid.Column="3" Grid.Row="4" Margin="5" Width="164" Height="30" FontSize="12"
+                Content="Finish Sale" HorizontalAlignment="Right" Command="{Binding FinnishSaleCommand}"/>
     </Grid>
 </ma:MetroWindow>

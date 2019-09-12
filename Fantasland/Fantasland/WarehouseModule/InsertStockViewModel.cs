@@ -85,7 +85,7 @@ namespace Fantasland.WarehouseModule
                 }
                 else
                 {
-                    MessageBox.Show("Select product name for every stock", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Select product name for every row", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }

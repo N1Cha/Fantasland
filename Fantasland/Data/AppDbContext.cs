@@ -13,5 +13,9 @@ namespace Data
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Invoices> Invoices { get; set; }
+
+        public DbSet<InvoiceItems> InvoiceItems { get; set; }
     }
 }
