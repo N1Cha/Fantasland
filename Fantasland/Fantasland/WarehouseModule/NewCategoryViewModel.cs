@@ -18,7 +18,6 @@ namespace Fantasland.WarehouseModule
         private Category newCategory;
         private ICommand saveCategoryCommand;
         private ObservableCollection<Category> allCategories;
-        private bool? dialogResult;
 
         public NewCategoryViewModel()
         {
@@ -40,17 +39,7 @@ namespace Fantasland.WarehouseModule
                 this.NotifyChanged(nameof(AllCategories));
             }
         }
-
-        public bool? DialogResult
-        {
-            get { return this.dialogResult; }
-            set
-            {
-                this.dialogResult = value;
-                this.NotifyChanged(nameof(DialogResult));
-            }
-        }
-
+        
         public ICommand SaveCategoryCommand
         {
             get { return this.saveCategoryCommand = new Command<object>(OnSaveCategoryCommand); }
@@ -81,6 +70,8 @@ namespace Fantasland.WarehouseModule
                 {
                     context.Categories.Add(this.NewCategory);
                     context.SaveChanges();
+                    this.NewCategory = new Category();
+                    MessageBox.Show("The category is added successfully!", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else

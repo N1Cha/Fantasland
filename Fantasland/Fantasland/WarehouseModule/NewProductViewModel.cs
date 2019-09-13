@@ -69,7 +69,7 @@ namespace Fantasland.WarehouseModule
                 {
                     context.Products.Add(this.NewProduct);
                     context.SaveChanges();
-                    MessageBox.Show("The product is added successfully", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("The product is added successfully!", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else

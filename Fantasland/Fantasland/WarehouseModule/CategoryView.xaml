@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
 
         <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2" Margin="5"  Header="Existing Categories" IsExpanded="True" Height="610" Background="LightGreen">
-            <DataGrid ItemsSource="{Binding AllCategories, Mode=TwoWay}" AlternatingRowBackground="LightGoldenrodYellow"
+            <DataGrid ItemsSource="{Binding AllCategories, Mode=TwoWay}" AlternatingRowBackground="LightGreen"
                       AutoGenerateColumns="False" CanUserAddRows="False" FontSize="15" VerticalScrollBarVisibility="Auto" 
                       SelectedItem="{Binding SelectedCategory}">
                 <DataGrid.Columns>
@@ -29,8 +29,10 @@
         </Expander>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="2" Orientation="Horizontal" Margin="2">
-            <Button Margin="2" Content="Add" Command="{Binding AddCategoryCommand}" Width="50" Height="25" FontSize="10"/>
-            <Button Margin="2" Content="Delete" Command="{Binding DeleteCategoryCommand}" Width="50" Height="25" FontSize="10"/>
+            <Button Margin="2" Content="Add Category" Command="{Binding AddCategoryCommand}" Width="164" Height="30" FontSize="12"/>
+            <Button Margin="2" Content="Delete Category" Command="{Binding DeleteCategoryCommand}" Width="164" Height="30" FontSize="12"/>
         </StackPanel>
+
+        <Button Grid.Column="1" Grid.Row="1" Margin="5" Width="164" Height="30" FontSize="12" Content="Close" HorizontalAlignment="Right" IsCancel="True"/>
     </Grid>
 </mahapps:MetroWindow>

@@ -40,8 +40,11 @@
                 <mahapps:NumericUpDown Grid.Column="3" Grid.Row="1" Margin="3" Minimum="0" HorizontalContentAlignment="Right" 
                                Value="{Binding NewProduct.Quantity, Mode=TwoWay}"/>
 
-                <Button Grid.Column="1" Grid.Row="3" Margin="5" Content="Save Product" Command="{Binding SaveProductCommand}" 
-                Width="100" Height="25" FontSize="10" HorizontalAlignment="Center" IsDefault="True"/>
+                <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Margin="3" Content="Save Product" Width="164" Height="30" FontSize="12" HorizontalAlignment="Center" IsDefault="True"
+                             Command="{Binding SaveProductCommand}"/>
+                    <Button Margin="3" Width="164" Height="30" FontSize="12" Content="Cancel" HorizontalAlignment="Right" IsCancel="True"/>
+                </StackPanel>
             </Grid>
         </Expander>
     </Grid>

@@ -6,10 +6,8 @@ using System.Data.Entity;
 
 namespace Fantasland.WarehouseModule 
 {
-    public class FullStockViewModel : NotifyPropertyChanged
+    public class FullStockViewModel
     {
-        private ObservableCollection<Product> allProducts;
-
         public FullStockViewModel()
         {
             this.AllProducts = new ObservableCollection<Product>();
@@ -21,11 +19,6 @@ namespace Fantasland.WarehouseModule
             }
         }
 
-        public ObservableCollection<Product> AllProducts
-        {
-            get { return this.allProducts; }
-            set { this.allProducts = value; }
-        }
-
+        public ObservableCollection<Product> AllProducts { get; set; }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Insert Stock" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
+        Title="Insert Stock" Height="700" Width="1280" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
     <Grid>
         <Grid.Resources>
             <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"/>
@@ -47,11 +47,13 @@
         </Expander>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="2" Orientation="Horizontal" Margin="2">
-            <Button Margin="2" Content="Add Row" Command="{Binding AddRowCommand}" Width="80" Height="25" FontSize="10"/>
-            <Button Margin="2" Content="Delete Row" Command="{Binding DeleteRowCommand}" Width="80" Height="25" FontSize="10"/>
+            <Button Margin="2" Content="Add Row" Command="{Binding AddRowCommand}" Width="164" Height="30" FontSize="12"/>
+            <Button Margin="2" Content="Delete Row" Command="{Binding DeleteRowCommand}" Width="164" Height="30" FontSize="12"/>
         </StackPanel>
 
-        <Button Grid.Column="0" Grid.Row="2" Margin="2" Content="Insert Stocks" HorizontalAlignment="Left"
-                Command="{Binding InsertStockInWerehouse}" Width="164" Height="30" FontSize="12"/>
+        <StackPanel Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="3" Content="Insert Stocks" HorizontalAlignment="Left" Width="164" Height="30" FontSize="12" Command="{Binding InsertStockInWerehouse}" />
+            <Button  Margin="3" Width="164" Height="30" FontSize="12" Content="Cancel" HorizontalAlignment="Right" IsCancel="True"/>
+        </StackPanel>        
     </Grid>
 </mahapps:MetroWindow>

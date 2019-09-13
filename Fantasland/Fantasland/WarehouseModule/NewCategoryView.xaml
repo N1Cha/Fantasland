@@ -7,7 +7,7 @@
         xmlns:mahapss="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="Category" Height="150" Width="400" ResizeMode="NoResize" SaveWindowPosition="True" 
-                     BorderBrush="Black" BorderThickness="2" Topmost="True"> 
+                     BorderBrush="Black" BorderThickness="2" Topmost="True">
     <Window.Resources>
         <Style x:Key="LabelStyle" TargetType="Label">
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
@@ -34,14 +34,16 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Label Grid.Column="0" Grid.Row="0" Content="Category Name" Style="{StaticResource LabelStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding NewCategory.Name, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"/>
 
         <Label Grid.Column="0" Grid.Row="1" Content="Category Abbreviation" Style="{StaticResource LabelStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding NewCategory.Abbreviation, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"/>
 
-        <Button Grid.Column="1" Grid.Row="2" Margin="5" Content="Save Category" Command="{Binding SaveCategoryCommand}" 
-                Width="100" Height="25" FontSize="10" HorizontalAlignment="Center" IsDefault="True"/>
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button  Margin="3" Content="Save Category" Command="{Binding SaveCategoryCommand}" Width="100" Height="25" FontSize="10" HorizontalAlignment="Center" IsDefault="True"/>
+            <Button Margin="3" Content="Cancel" Width="100" Height="25" FontSize="10" IsCancel="True"/>
+        </StackPanel>
     </Grid>
 </mahapss:MetroWindow>

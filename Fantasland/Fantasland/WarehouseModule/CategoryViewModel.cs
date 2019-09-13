@@ -60,19 +60,28 @@ namespace Fantasland.WarehouseModule
 
         private void OnAddCategoryCommand()
         {
-            if (Bootstraper.Container.Resolve<NewCategoryView>().ShowDialog() == true)
+            Bootstraper.Container.Resolve<NewCategoryView>().ShowDialog();
+            using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
+            {
+                context.Categories.Load();
+                this.AllCategories = new ObservableCollection<Category>(context.Categories.Local.OrderBy(x => x.Id));
+            }
+        }
+
+
+        private void OnDeleteCategoryCommand()
+        {
+            if (this.SelectedCategory != null)
             {
                 using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
                 {
                     context.Categories.Load();
+                    context.Categories.Local.Remove(context.Categories.Local.First(c => c.Id == this.SelectedCategory.Id));
+                    context.SaveChanges();
+
                     this.AllCategories = new ObservableCollection<Category>(context.Categories.Local.OrderBy(x => x.Id));
                 }
             }
-        }
-
-        private void OnDeleteCategoryCommand()
-        {
-
         }
     }
 }
