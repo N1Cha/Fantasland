@@ -66,6 +66,9 @@
                     <i:EventTrigger EventName="UnloadingRow">
                         <i:InvokeCommandAction Command="{Binding PaymentCommand}"/>
                     </i:EventTrigger>
+                    <i:EventTrigger EventName="LostFocus">
+                        <i:InvokeCommandAction Command="{Binding PaymentCommand}"/>
+                    </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Product Name" Width="1*">
@@ -98,7 +101,9 @@
         <ma:NumericUpDown Grid.Column="3" Grid.Row="3" Width="200" Height="25" Margin="3" HorizontalAlignment="Right" IsReadOnly="True"
                  Value="{Binding PaymentAmount, Mode=TwoWay}" HideUpDownButtons="True"/>
 
-        <Button Grid.Column="3" Grid.Row="4" Margin="5" Width="164" Height="30" FontSize="12"
-                Content="Finish Sale" HorizontalAlignment="Right" Command="{Binding FinnishSaleCommand}"/>
+        <StackPanel Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="3" Width="164" Height="30" FontSize="12" Content="Finish Sale" HorizontalAlignment="Right" Command="{Binding FinnishSaleCommand}"/>
+            <Button  Margin="3" Width="164" Height="30" FontSize="12" Content="Cancel" HorizontalAlignment="Right" IsCancel="True"/>
+        </StackPanel>
     </Grid>
 </ma:MetroWindow>

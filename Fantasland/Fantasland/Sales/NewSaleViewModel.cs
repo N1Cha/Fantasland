@@ -181,6 +181,7 @@ namespace Fantasland.Sales
         {
             if (IsInvoiceValid())
             {
+                List<InvoiceItems> outOfStockItems = new List<InvoiceItems>();
                 this.NewInvoice.IsOrganization = this.IsOraganization;
                 this.NewInvoice.PaymentAmount = this.PaymentAmount;
 
@@ -190,9 +191,10 @@ namespace Fantasland.Sales
                     context.Invoices.Add(this.NewInvoice);
                     context.SaveChanges();
 
+                    context.Products.Load();
                     foreach (InvoiceItems item in this.InvoiceItems)
                     {
-                        if(item.Product.Id == 0 || item.Quantity == 0)
+                        if (item.Product.Id == 0 || item.Quantity == 0)
                         {
                             continue;
                         }
@@ -201,13 +203,28 @@ namespace Fantasland.Sales
                         item.ProductId = item.Product.Id;
                         item.InvoiceId = this.NewInvoice.Id;
 
-                        context.InvoiceItems.Add(item);
+                        if (context.Products.FirstOrDefault(p => p.Id == item.ProductId).Quantity - item.Quantity < 0)
+                        {
+                            outOfStockItems.Add(item);
+                        }
+                        else
+                        {
+                            context.InvoiceItems.Add(item);
+                            Product wearhouseProduct = context.Products.Local.FirstOrDefault(p => p.Id == item.ProductId);
+                            wearhouseProduct.Quantity -= item.Quantity;
+                        }
                     }
 
-                    context.SaveChanges();
+                    if (outOfStockItems.Count == 0)
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("The invoice is created successfully", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(this.ItemsOutOfStockMessage(outOfStockItems), "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
-
-                MessageBox.Show("The invoice is created successfully", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -234,6 +251,19 @@ namespace Fantasland.Sales
             }
 
             return true;
+        }
+
+        private string ItemsOutOfStockMessage(List<InvoiceItems> items)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("The following products are out of stock:");
+
+            foreach (InvoiceItems item in items)
+            {
+                stringBuilder.AppendLine(item.Product.Name);
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }
