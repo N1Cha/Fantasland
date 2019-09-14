@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="New Product" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
+        Title="New Product" Height="750" Width="1260" ResizeMode="NoResize" SaveWindowPosition="True">
     <Grid>
-        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Product" IsExpanded="True" Background="LightGreen" VerticalAlignment="Top">
+        <GroupBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Product" Background="LightSeaGreen" VerticalAlignment="Top">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -23,29 +23,31 @@
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Margin="3" Content="Product Code"/>
+
+                <Label Grid.Column="0" Grid.Row="0" Margin="3" Content="Product Code" HorizontalContentAlignment="Right"/>
                 <TextBox Grid.Column="1" Grid.Row="0" Margin="3" Text="{Binding NewProduct.Code, Mode=TwoWay}"/>
 
-                <Label Grid.Column="0" Grid.Row="1" Margin="3" Content="Product Name"/>
+                <Label Grid.Column="0" Grid.Row="1" Margin="3" Content="Product Name" HorizontalContentAlignment="Right"/>
                 <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding NewProduct.Name, Mode=TwoWay}"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Margin="3" Content="Product Price"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding NewProduct.Price, Mode=TwoWay}"/>
+                <Label Grid.Column="0" Grid.Row="2" Margin="3" Content="Product Price" HorizontalContentAlignment="Right"/>
+                <mahapps:NumericUpDown Grid.Column="1" Grid.Row="2" Margin="3" Value="{Binding NewProduct.Price, Mode=TwoWay}"
+                                       HorizontalContentAlignment="Right" />
 
-                <Label Grid.Column="2" Grid.Row="0" Margin="3" Content="Product Category"/>
+                <Label Grid.Column="2" Grid.Row="0" Margin="3" Content="Product Category" HorizontalContentAlignment="Right"/>
                 <ComboBox Grid.Column="3" Grid.Row="0" Margin="3" ItemsSource="{Binding Categories, Mode=TwoWay}" DisplayMemberPath="Name"
                   SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"/>
 
-                <Label Grid.Column="2" Grid.Row="1" Margin="3" Content="Quantity"/>
+                <Label Grid.Column="2" Grid.Row="1" Margin="3" Content="Quantity" HorizontalContentAlignment="Right"/>
                 <mahapps:NumericUpDown Grid.Column="3" Grid.Row="1" Margin="3" Minimum="0" HorizontalContentAlignment="Right" 
                                Value="{Binding NewProduct.Quantity, Mode=TwoWay}"/>
 
-                <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Margin="3" Content="Save Product" Width="164" Height="30" FontSize="12" HorizontalAlignment="Center" IsDefault="True"
                              Command="{Binding SaveProductCommand}"/>
                     <Button Margin="3" Width="164" Height="30" FontSize="12" Content="Cancel" HorizontalAlignment="Right" IsCancel="True"/>
                 </StackPanel>
             </Grid>
-        </Expander>
+        </GroupBox>
     </Grid>
 </mahapps:MetroWindow>

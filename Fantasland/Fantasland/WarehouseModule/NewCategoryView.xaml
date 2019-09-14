@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapss="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Category" Height="150" Width="400" ResizeMode="NoResize" SaveWindowPosition="True" 
-                     BorderBrush="Black" BorderThickness="2" Topmost="True">
+        Title="Category" Height="150" Width="400" ResizeMode="NoResize" SaveWindowPosition="True" BorderBrush="Black" BorderThickness="2">
     <Window.Resources>
         <Style x:Key="LabelStyle" TargetType="Label">
             <Setter Property="HorizontalContentAlignment" Value="Right"/>

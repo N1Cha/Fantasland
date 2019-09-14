@@ -22,25 +22,25 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Column="0" Grid.Row="0" Background="LightGreen" Header="Warehouse Management" Margin="10" FontSize="20">
+        <GroupBox Grid.Column="0" Grid.Row="0" Background="LightCoral" Header="Shop Management" Margin="10">
+            <StackPanel Margin="10,5,0,0">
+                <Button Margin="5" Content="New Sale" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding NewSaleCommand}"/>
+                <Button Margin="5" Content="All Sales" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding AllSalesCommand}"/>
+                <Button Margin="5" Content="Price List" Height="50" FontFamily="Candara" FontSize="20" Command=""/>
+            </StackPanel>
+        </GroupBox>
+        
+        <GroupBox Grid.Column="1" Grid.Row="0" Background="LightGreen" Header="Warehouse Management" Margin="10" FontSize="20">
             <StackPanel Margin="10,5,0,0">
                 <Button Margin="5" Content="Full Stock" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding StockCommand}"/>
                 <Button Margin="5" Content="Insert Stock" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding InsertStockCommand}"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Column="2" Grid.Row="0" Background="LightSeaGreen" Header="Product Management" Margin="10">
+            <StackPanel Margin="10,5,0,0">
                 <Button Margin="5" Content="Add Product" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding ProductCommand}"/>
                 <Button Margin="5" Content="Categories" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding CategoryCommand}"/>
-            </StackPanel>
-        </GroupBox>
-        
-        <GroupBox Grid.Column="1" Grid.Row="0" Background="LightCoral" Header="Shop Management" Margin="10">
-            <StackPanel Margin="10,5,0,0">
-                <Button Margin="5" Content="New Sale" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding NewSaleCommand}"/>
-                <Button Margin="5" Content="All Sales" Height="50" FontFamily="Candara" FontSize="20"/>
-            </StackPanel>
-        </GroupBox>
-        
-        <GroupBox Grid.Column="2" Grid.Row="0" Background="LightSeaGreen" Header="Options" Margin="10">
-            <StackPanel Margin="10,5,0,0">
-                <Button Margin="5" Content="Settings" Height="50" FontFamily="Candara" FontSize="20"/>
             </StackPanel>
         </GroupBox>
     </Grid>

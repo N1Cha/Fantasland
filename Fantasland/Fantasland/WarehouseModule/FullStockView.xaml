@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Full Stock" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
+        Title="Full Stock" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Expander Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="Full Stock" IsExpanded="True" Height="610" 
+        <GroupBox Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="Full Stock" Height="610" 
                   Background="LightGreen" VerticalAlignment="Top">
             <DataGrid ItemsSource="{Binding AllProducts, Mode=TwoWay}" AutoGenerateColumns="False" FontSize="15" CanUserAddRows="False"
                   AlternatingRowBackground="LightGreen" GridLinesVisibility="All">
@@ -24,7 +24,7 @@
                     <DataGridTextColumn Header="Quantity" IsReadOnly="True" Binding="{Binding Quantity, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </Expander>
+        </GroupBox>
 
         <Button Grid.Row="1" Margin="5" Width="164" Height="30" FontSize="12" Content="Close" HorizontalAlignment="Right" IsCancel="True"/>
     </Grid>

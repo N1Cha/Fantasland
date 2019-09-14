@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Categories Manegment" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
+        Title="Categories Manegment" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,16 +17,16 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2" Margin="5"  Header="Existing Categories" IsExpanded="True" Height="610" Background="LightGreen">
-            <DataGrid ItemsSource="{Binding AllCategories, Mode=TwoWay}" AlternatingRowBackground="LightGreen"
+        <GroupBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2" Margin="5" Header="Existing Categories" Height="610" Background="LightSeaGreen">
+            <DataGrid ItemsSource="{Binding AllCategories, Mode=TwoWay}" AlternatingRowBackground="LightSeaGreen"
                       AutoGenerateColumns="False" CanUserAddRows="False" FontSize="15" VerticalScrollBarVisibility="Auto" 
-                      SelectedItem="{Binding SelectedCategory}">
+                      SelectedItem="{Binding SelectedCategory}" GridLinesVisibility="All"> 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name, Mode=TwoWay}"/>
                     <DataGridTextColumn Header="Abbreviation" IsReadOnly="True" Binding="{Binding Abbreviation, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </Expander>
+        </GroupBox>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="2" Orientation="Horizontal" Margin="2">
             <Button Margin="2" Content="Add Category" Command="{Binding AddCategoryCommand}" Width="164" Height="30" FontSize="12"/>

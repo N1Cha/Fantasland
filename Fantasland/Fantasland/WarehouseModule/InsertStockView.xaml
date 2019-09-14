@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Insert Stock" Height="700" Width="1280" ResizeMode="NoResize" SaveWindowPosition="True" Topmost="True">
+        Title="Insert Stock" Height="700" Width="1280" ResizeMode="NoResize" SaveWindowPosition="True">
     <Grid>
         <Grid.Resources>
             <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"/>
@@ -24,7 +24,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Stock" IsExpanded="True" Height="580" Background="LightGreen">
+        <GroupBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Stock" Height="580" Background="LightGreen">
             <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=NewStock, Mode=TwoWay}" FontSize="15" CanUserAddRows="False" 
                       GridLinesVisibility="All" AlternatingRowBackground="LightGreen" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <DataGrid.Columns>                    
@@ -44,7 +44,7 @@
                     <mahapps:DataGridNumericUpDownColumn Header="Product Quantity" Binding="{Binding Path=Quantity}" Minimum="1"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </Expander>
+        </GroupBox>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan ="2" Orientation="Horizontal" Margin="2">
             <Button Margin="2" Content="Add Row" Command="{Binding AddRowCommand}" Width="164" Height="30" FontSize="12"/>

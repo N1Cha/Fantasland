@@ -46,7 +46,7 @@ namespace Fantasland.WarehouseModule
         }
 
         public ObservableCollection<Category> Categories { get; set; }
-        
+
         public ICommand SaveProductCommand
         {
             get { return this.saveProductCommand = new Command<object>(OnSaveProductCommand); }
@@ -60,7 +60,7 @@ namespace Fantasland.WarehouseModule
             }
             else
             {
-                this.NewProduct.CategoryId = 0;
+                MessageBox.Show("Select category!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             if (IsNewProductValid())
@@ -69,25 +69,41 @@ namespace Fantasland.WarehouseModule
                 {
                     context.Products.Add(this.NewProduct);
                     context.SaveChanges();
+                    this.NewProduct = new Product();
                     MessageBox.Show("The product is added successfully!", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            else
-            {
-                MessageBox.Show("Set valid product name, code, price and category!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-
         }
 
         private bool IsNewProductValid()
         {
+            using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
+            {
+                context.Products.Load();
+                foreach (Product product in context.Products.Local)
+                {
+                    if(string.Compare(product.Code, this.NewProduct.Code, true) == 0)
+                    {
+                        MessageBox.Show("There is already exist product with same code!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
+
+                    if (string.Compare(product.Name, this.NewProduct.Name, true) == 0)
+                    {
+                        MessageBox.Show("There is already exist product with same name!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
+                }
+            }
+
             if (!string.IsNullOrWhiteSpace(this.NewProduct.Name) && !string.IsNullOrWhiteSpace(this.NewProduct.Code)
-                && this.NewProduct.Price > 0.0 && this.NewProduct.CategoryId != 0)
+            && this.NewProduct.Price > 0.0 && this.NewProduct.CategoryId != 0)
             {
                 return true;
             }
             else
             {
+                MessageBox.Show("Set valid product name, code, price and category!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
         }

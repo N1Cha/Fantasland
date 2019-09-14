@@ -76,7 +76,7 @@ namespace Fantasland.WarehouseModule
             }
             else
             {
-                MessageBox.Show("There is already exist category with same name!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("There is already exist category with same name or with same abbreviation!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Fantasland.WarehouseModule
         {
             foreach (Category c in this.AllCategories)
             {
-                if (string.Compare(c.Name, this.NewCategory.Name, true) == 0)
+                if (string.Compare(c.Name, this.NewCategory.Name, true) == 0 || string.Compare(c.Abbreviation, this.NewCategory.Abbreviation, true) == 0)
                 {
                     return true;
                 }

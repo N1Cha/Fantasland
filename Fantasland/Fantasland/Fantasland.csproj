@@ -74,6 +74,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Sales\AllSalesView.xaml.cs">
+      <DependentUpon>AllSalesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\AllSalesViewModel.cs" />
     <Compile Include="Sales\NewSaleViewModel.cs" />
     <Compile Include="Sales\NewSaleView.xaml.cs">
       <DependentUpon>NewSaleView.xaml</DependentUpon>
@@ -118,6 +122,10 @@
       <DependentUpon>MainScreen.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Sales\AllSalesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Sales\NewSaleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
