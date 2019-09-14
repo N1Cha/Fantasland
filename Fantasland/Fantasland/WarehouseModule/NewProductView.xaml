@@ -45,7 +45,7 @@
                 <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Margin="3" Content="Save Product" Width="164" Height="30" FontSize="12" HorizontalAlignment="Center" IsDefault="True"
                              Command="{Binding SaveProductCommand}"/>
-                    <Button Margin="3" Width="164" Height="30" FontSize="12" Content="Cancel" HorizontalAlignment="Right" IsCancel="True"/>
+                    <Button Margin="3" Width="164" Height="30" FontSize="12" Content="Close" HorizontalAlignment="Right" IsCancel="True"/>
                 </StackPanel>
             </Grid>
         </GroupBox>
