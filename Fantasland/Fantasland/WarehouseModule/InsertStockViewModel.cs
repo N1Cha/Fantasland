@@ -12,7 +12,7 @@ namespace Fantasland.WarehouseModule
     public class InsertStockViewModel : NotifyPropertyChanged
     {
         private Product selectedItem;
-
+        private bool isEnable;
         private ICommand addRowCommand;
         private ICommand deleteRowCommand;
         private ICommand insertStockInWerehouse;
@@ -24,6 +24,7 @@ namespace Fantasland.WarehouseModule
             this.SelectedItem = new Product();
             this.selectedItem.Category = new Category();
             this.NewStock.Add(this.SelectedItem);
+            this.IsEnable = true;
 
             using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
             {
@@ -43,6 +44,16 @@ namespace Fantasland.WarehouseModule
             {
                 this.selectedItem = value;
                 NotifyChanged(nameof(SelectedItem));
+            }
+        }
+
+        public bool IsEnable
+        {
+            get { return this.isEnable; }
+            set
+            {
+                this.isEnable = value;
+                NotifyChanged(nameof(IsEnable));
             }
         }
 
@@ -81,7 +92,8 @@ namespace Fantasland.WarehouseModule
                 if (this.HasAllStocksHaveNames(this.NewStock))
                 {
                     this.AddNewStock(this.NewStock);
-                    MessageBox.Show("The products are added successfully", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.IsEnable = false;
+                    MessageBox.Show("The products are added successfully", "Message", MessageBoxButton.OK, MessageBoxImage.Information);                    
                 }
                 else
                 {

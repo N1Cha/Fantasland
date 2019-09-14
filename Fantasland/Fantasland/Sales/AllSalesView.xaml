@@ -1,0 +1,44 @@
+﻿<ma:MetroWindow x:Class="Fantasland.Sales.AllSalesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fantasland.Sales"
+        xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="All Invoices" Height="760" Width="1260" ResizeMode="NoResize" SaveWindowPosition="True" Margin="10">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Margin="5" Header="Existing Categories" Height="670" Background="LightCoral">
+            <DataGrid Margin="2" AlternatingRowBackground="LightCoral" AutoGenerateColumns="False" CanUserAddRows="False" 
+                      FontSize="15" VerticalScrollBarVisibility="Auto" GridLinesVisibility="All"
+                      ItemsSource="{Binding Path=AllInvoices, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="Invoice number" Binding="{Binding Path=InvoiceNumber}"/>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Organization" Binding="{Binding Path=IsOrganization}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Organization Name" Binding="{Binding Path=OrganizationCode}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Payment Amount" Binding="{Binding Path=PaymentAmount}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Invoice date" Binding="{Binding Path=InvoiceDate}"/>
+                </DataGrid.Columns>
+                <!--<DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <DataGrid ItemsSource="{Binding Path=Items, Mode=TwoWay}" AutoGenerateColumns="False" GridLinesVisibility="All" CanUserAddRows="False"
+                                  AlternatingRowBackground="LightCoral">
+                                <DataGridTextColumn Header="Product Name" Binding="{Binding Path=Product.Name}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Quantity" Binding="{Binding Path=Quantity}" IsReadOnly="True"/>
+                            </DataGrid>
+                        </Grid>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>-->
+            </DataGrid>
+        </GroupBox>
+
+        <Button Grid.Row="1" Margin="5" Width="160" Height="30" FontSize="12" Content="Close" HorizontalAlignment="Right" 
+                IsCancel="True" Command="{Binding CancelCommand}"/>
+    </Grid>
+</ma:MetroWindow>
