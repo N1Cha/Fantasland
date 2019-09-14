@@ -24,9 +24,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Stock" Height="580" Background="LightGreen">
+        <GroupBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="New Stock" Height="580" Background="LightSlateGray">
             <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=NewStock, Mode=TwoWay}" FontSize="15" CanUserAddRows="False" 
-                      GridLinesVisibility="All" AlternatingRowBackground="LightGreen" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                      GridLinesVisibility="All" AlternatingRowBackground="LightSlateGray" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <DataGrid.Columns>                    
                     <DataGridTemplateColumn Header="Product Name">
                         <DataGridTemplateColumn.CellTemplate>
