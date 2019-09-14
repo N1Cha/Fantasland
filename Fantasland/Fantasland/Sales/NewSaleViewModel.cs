@@ -15,6 +15,7 @@ namespace Fantasland.Sales
     public class NewSaleViewModel : NotifyPropertyChanged
     {
         private bool isOraganization;
+        private bool isEnabled;
         private double paymentAmount;
         private string selectedBuyerType;
         private Invoices newInvoice;
@@ -29,10 +30,11 @@ namespace Fantasland.Sales
             List<Invoices> mountInvoices = new List<Invoices>();
             this.AllProducts = new ObservableCollection<Product>();
             this.SelectedItem = new InvoiceItems();
+            this.IsEnabled = true;
 
-            this.BuyerType = new ObservableCollection<string>() { "Organization", "Customer" };
-            this.SelectedBuyerType = "Organization";
-            this.InvoiceItems = new ObservableCollection<InvoiceItems>() { new InvoiceItems() { Product = new Product() }, new InvoiceItems() { Product = new Product() } };
+            this.BuyerType = new ObservableCollection<string>() { "Customer", "Organization" };
+            this.SelectedBuyerType = "Customer";
+            this.InvoiceItems = new ObservableCollection<InvoiceItems>() { new InvoiceItems() { Product = new Product() } };
 
             using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
             {
@@ -43,10 +45,9 @@ namespace Fantasland.Sales
                 this.AllProducts = context.Products.Local;
             }
 
-
             this.NewInvoice = new Invoices()
             {
-                InvoiceDate = DateTime.Today,
+                InvoiceDate = DateTime.Now.Date,
                 InvoiceNumber = GenerateInvoiceNumber(mountInvoices)
             };
         }
@@ -78,6 +79,16 @@ namespace Fantasland.Sales
             {
                 this.isOraganization = value;
                 this.NotifyChanged(nameof(IsOraganization));
+            }
+        }
+
+        public bool IsEnabled
+        {
+            get { return this.isEnabled; }
+            set
+            {
+                this.isEnabled = value;
+                this.NotifyChanged(nameof(IsEnabled));
             }
         }
 
@@ -156,7 +167,10 @@ namespace Fantasland.Sales
 
             foreach (InvoiceItems item in this.InvoiceItems)
             {
-                paymentAmount += item.Product.Price * item.Quantity;
+                if (item.Product != null)
+                {
+                    paymentAmount += item.Product.Price * item.Quantity;
+                }
             }
 
             return paymentAmount;
@@ -185,7 +199,6 @@ namespace Fantasland.Sales
                 this.NewInvoice.IsOrganization = this.IsOraganization;
                 this.NewInvoice.PaymentAmount = this.PaymentAmount;
 
-
                 using (AppDbContext context = new AppDbContext(Constants.ConnectionString))
                 {
                     context.Invoices.Add(this.NewInvoice);
@@ -194,24 +207,24 @@ namespace Fantasland.Sales
                     context.Products.Load();
                     foreach (InvoiceItems item in this.InvoiceItems)
                     {
-                        if (item.Product.Id == 0 || item.Quantity == 0)
+                        if(item.Product == null)
                         {
                             continue;
                         }
 
-                        item.Invoice = this.NewInvoice;
                         item.ProductId = item.Product.Id;
                         item.InvoiceId = this.NewInvoice.Id;
 
-                        if (context.Products.FirstOrDefault(p => p.Id == item.ProductId).Quantity - item.Quantity < 0)
+                        if (context.Products.FirstOrDefault(p => p.Id == item.ProductId).Quantity == 0
+                            || context.Products.FirstOrDefault(p => p.Id == item.ProductId).Quantity - item.Quantity < 0)
                         {
                             outOfStockItems.Add(item);
                         }
                         else
                         {
-                            context.InvoiceItems.Add(item);
-                            Product wearhouseProduct = context.Products.Local.FirstOrDefault(p => p.Id == item.ProductId);
-                            wearhouseProduct.Quantity -= item.Quantity;
+                            context.InvoiceItems.Local.Add(item);
+                            context.Products.Local.First(x => string.Compare(x.Name, item.Product.Name, true) == 0).Quantity -= item.Quantity;
+                            context.Products.Remove(context.Products.Local.Where(x => string.Compare(x.Name, item.Product.Name, true) == 0).OrderByDescending(x=>x.Quantity).First());
                         }
                     }
 
@@ -219,6 +232,7 @@ namespace Fantasland.Sales
                     {
                         context.SaveChanges();
                         MessageBox.Show("The invoice is created successfully", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.IsEnabled = false;
                     }
                     else
                     {
@@ -243,11 +257,22 @@ namespace Fantasland.Sales
 
             foreach (InvoiceItems item in this.InvoiceItems)
             {
-                if (string.IsNullOrWhiteSpace(item.Product.Name) && item.Quantity != 0)
+                if(item.Product == null)
                 {
-                    MessageBox.Show("Select Product Name for every row!", "Warning  ", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    continue;
+                }
+
+                if (string.IsNullOrWhiteSpace(item.Product.Name) || item.Quantity == 0)
+                {
+                    MessageBox.Show("Select Product Name and quantity for every row!", "Warning  ", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return false;
                 }
+            }
+
+            if (this.PaymentAmount <= 0)
+            {
+                MessageBox.Show("Payment amount must be more than 0!", "Warning  ", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
 
             return true;
