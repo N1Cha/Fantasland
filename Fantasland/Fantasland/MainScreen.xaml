@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland"
         xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Fantasland" Height="800" Width="1500" WindowState="Maximized">
+        Title="Fantasland" Height="800" Width="1500" WindowState="Maximized" Icon="Infrastructure/shop-icon.png">
     <mahApps:MetroWindow.Resources>
         <ResourceDictionary Source="Infrastructure/Styles.xaml"/>
     </mahApps:MetroWindow.Resources>
