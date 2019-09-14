@@ -30,7 +30,7 @@
             </StackPanel>
         </GroupBox>
         
-        <GroupBox Grid.Column="1" Grid.Row="0" Background="LightSlateGray" Header="Warehouse Management" Margin="10" FontSize="20" Foreground="White">
+        <GroupBox Grid.Column="1" Grid.Row="0" Background="LightGray" Header="Warehouse Management" Margin="10" FontSize="20" Foreground="White">
             <StackPanel Margin="10,5,0,0">
                 <Button Margin="5" Content="Full Stock" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding StockCommand}"/>
                 <Button Margin="5" Content="Insert Stock" Height="50" FontFamily="Candara" FontSize="20" Command="{Binding InsertStockCommand}"/>

@@ -13,9 +13,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Grid.ColumnSpan ="3" Margin="5" Header="Full Stock" Height="610" 
-                  Background="LightSlateGray" VerticalAlignment="Top">
+                  Background="LightGray" VerticalAlignment="Top">
             <DataGrid ItemsSource="{Binding AllProducts, Mode=TwoWay}" AutoGenerateColumns="False" FontSize="15" CanUserAddRows="False"
-                  AlternatingRowBackground="LightSlateGray" GridLinesVisibility="All">
+                  AlternatingRowBackground="LightGray" GridLinesVisibility="All">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Code" IsReadOnly="True" Binding="{Binding Code, Mode=TwoWay}"/>
                     <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name, Mode=TwoWay}"/>
