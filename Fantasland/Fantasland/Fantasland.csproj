@@ -82,6 +82,10 @@
     <Compile Include="Sales\NewSaleView.xaml.cs">
       <DependentUpon>NewSaleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sales\PriceListView.xaml.cs">
+      <DependentUpon>PriceListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\PriceListViewModel.cs" />
     <Compile Include="WarehouseModule\CategoryView.xaml.cs">
       <DependentUpon>CategoryView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sales\NewSaleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sales\PriceListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

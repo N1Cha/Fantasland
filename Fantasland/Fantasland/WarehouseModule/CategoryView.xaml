@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps ="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Categories Manegment" Height="700" Width="1250" ResizeMode="NoResize" SaveWindowPosition="True">
+        Title="Categories Manegment"  Height="750" Width="1260" ResizeMode="NoResize" SaveWindowPosition="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

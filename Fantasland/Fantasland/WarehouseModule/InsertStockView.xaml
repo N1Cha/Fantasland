@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Fantasland.WarehouseModule"
         xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Insert Stock" Height="700" Width="1280" ResizeMode="NoResize" SaveWindowPosition="True">
+        Title="Insert Stock"  Height="750" Width="1260" ResizeMode="NoResize" SaveWindowPosition="True">
     <Grid>
         <Grid.Resources>
             <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"/>

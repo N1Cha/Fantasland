@@ -20,6 +20,7 @@ namespace Fantasland.Infrastructure
             builder.RegisterType<InsertStockViewModel>().AsSelf();
             builder.RegisterType<NewSaleViewModel>().AsSelf();
             builder.RegisterType<AllSalesViewModel>().AsSelf();
+            builder.RegisterType<PriceListViewModel>().AsSelf();
 
             builder.RegisterType<FullStockView>().AsSelf();
             builder.RegisterType<CategoryView>().AsSelf();
@@ -28,6 +29,7 @@ namespace Fantasland.Infrastructure
             builder.RegisterType<InsertStockView>().AsSelf();
             builder.RegisterType<NewSaleView>().AsSelf();
             builder.RegisterType<AllSalesView>().AsSelf();
+            builder.RegisterType<PriceListView>().AsSelf();
 
             Container = builder.Build();
         }
